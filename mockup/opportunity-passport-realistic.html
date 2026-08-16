@@ -62,6 +62,23 @@
     .screen-block{display:flex;flex-direction:column;align-items:center;gap:12px}
     .screen-no{color:rgba(255,255,255,.29);font:700 10px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.12em}
     .screen-label{max-width:310px;min-height:38px;color:var(--pink);font-size:14px;font-weight:800;text-align:center}
+    .screen-explainer{
+      width:340px;
+      padding:16px;
+      border:1px solid rgba(255,255,255,.1);
+      border-radius:18px;
+      color:rgba(255,255,255,.8);
+      background:linear-gradient(145deg,rgba(255,255,255,.055),rgba(255,255,255,.025));
+    }
+    .screen-explainer.wide{width:min(1120px,calc(100vw - 40px))}
+    .screen-explainer h3{margin:0;color:#fff;font-size:13px;line-height:1.4}
+    .screen-explainer>p{margin:6px 0 0;color:rgba(255,255,255,.5);font-size:10px;line-height:1.6}
+    .explain-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:13px}
+    .explain-item{padding:10px;border:1px solid rgba(255,255,255,.07);border-radius:12px;background:rgba(0,0,0,.16)}
+    .explain-item strong{display:block;color:#55dcff;font-size:8px;letter-spacing:.07em;text-transform:uppercase}
+    .explain-item span{display:block;margin-top:4px;color:rgba(255,255,255,.7);font-size:9px;line-height:1.55}
+    .explain-takeaway{margin-top:11px;padding:10px 11px;border-left:3px solid var(--pink);border-radius:4px 10px 10px 4px;color:rgba(255,255,255,.68);background:rgba(255,60,146,.06);font-size:9px;line-height:1.55}
+    .explain-takeaway strong{color:#fff}
     .phone{width:340px;padding:15px;border-radius:48px;background:linear-gradient(155deg,#292a31,#090a0d 62%);box-shadow:var(--shadow),inset 0 0 0 1px rgba(255,255,255,.06)}
     .phone-screen{width:310px;height:590px;position:relative;overflow:auto;border-radius:34px;background:var(--screen);scrollbar-width:thin}
     .phone-screen::-webkit-scrollbar{width:4px}
@@ -169,6 +186,8 @@
       .persona-stat:last-child{grid-column:1/-1}
       .phone{width:294px;padding:12px;border-radius:42px}
       .phone-screen{width:270px;height:515px;border-radius:30px}
+      .screen-explainer{width:294px}
+      .explain-grid{grid-template-columns:1fr}
       .flow{gap:30px}
       .desktop-grid{grid-template-columns:1fr}
       .side{display:none}
@@ -223,6 +242,17 @@
           <div class="data-row"><div><strong>Tax Information</strong><small>ใช้เท่าที่ SME เลือกและยินยอม</small></div><span class="check">✓</span></div>
           <div class="button-row"><div class="btn primary">ตรวจสอบ Consent →</div></div>
         </div></div>
+        <div class="screen-explainer">
+          <h3>หน้าจอนี้ทำหน้าที่อะไร?</h3>
+          <p>เริ่มจากความต้องการของธุรกิจก่อนเลือกข้อมูล เพื่อให้การวิเคราะห์มีวัตถุประสงค์ชัดเจนและใช้ข้อมูลเท่าที่จำเป็น</p>
+          <div class="explain-grid">
+            <div class="explain-item"><strong>SME ทำอะไร</strong><span>ระบุว่าจะซื้อ Freezer วงเงิน ฿100,000 และเลือกแหล่งข้อมูลที่ยินยอมให้นำมาวิเคราะห์</span></div>
+            <div class="explain-item"><strong>ระบบทำอะไร</strong><span>ผูก Goal, วงเงิน และแหล่งข้อมูลเข้าด้วยกัน เพื่อสร้างขอบเขตการวิเคราะห์แบบ Purpose-bound</span></div>
+            <div class="explain-item"><strong>ผลลัพธ์</strong><span>ได้คำขอวิเคราะห์ที่มีบริบทว่า SME ต้องการเงินไปทำอะไร ไม่ใช่เพียงส่ง Statement ก้อนใหญ่</span></div>
+            <div class="explain-item"><strong>ข้อมูลที่ยังไม่ถูกส่ง</strong><span>ขั้นตอนนี้เป็นเพียงการเลือก ยังไม่มีข้อมูลถูกวิเคราะห์หรือส่งให้ธนาคาร</span></div>
+          </div>
+          <div class="explain-takeaway"><strong>จุดสำคัญ:</strong> ระบบไม่ควรวิเคราะห์ทุกอย่างเพียงเพราะเข้าถึงได้ แต่ต้องเริ่มจากวัตถุประสงค์และความยินยอมของเจ้าของข้อมูล</div>
+        </div>
       </article>
 
       <article class="screen-block">
@@ -247,6 +277,17 @@
           <div class="agreement"><i>✓</i><span>ฉันตรวจสอบวัตถุประสงค์ แหล่งข้อมูล และขอบเขตการวิเคราะห์แล้ว</span></div>
           <div class="button-row"><div class="btn secondary">ย้อนกลับ</div><div class="btn primary">ยินยอมและสร้าง Evidence</div></div>
         </div></div>
+        <div class="screen-explainer">
+          <h3>Consent Gate 1: อนุญาตให้วิเคราะห์</h3>
+          <p>Consent แรกอนุญาตให้ Payment-to-Proof Engine ประมวลผลข้อมูลเพื่อสร้าง Evidence เท่านั้น ยังไม่รวมสิทธิแชร์ให้บุคคลที่สาม</p>
+          <div class="explain-grid">
+            <div class="explain-item"><strong>SME ตรวจสอบ</strong><span>วัตถุประสงค์ ข้อมูลที่ใช้ ช่วงเวลา 12 เดือน วิธีเข้าถึงแบบ Read-only และสิทธิถอนความยินยอม</span></div>
+            <div class="explain-item"><strong>ระบบบันทึก</strong><span>Consent Receipt ที่ระบุ Purpose, Data, Duration และสิ่งที่ระบบไม่ได้รับอนุญาตให้ทำ</span></div>
+            <div class="explain-item"><strong>ผลลัพธ์</strong><span>เกิดขอบเขตที่อนุญาตให้สร้าง Financial Evidence โดยตรวจสอบย้อนหลังได้ว่าใช้อะไรและเพื่ออะไร</span></div>
+            <div class="explain-item"><strong>สิ่งที่ไม่เกิดขึ้น</strong><span>ยังไม่มีการ Match ธนาคาร สมัครสินเชื่อ หรือแชร์ข้อมูลดิบให้ผู้ให้บริการ</span></div>
+          </div>
+          <div class="explain-takeaway"><strong>เหตุผลที่ต้องแยก:</strong> การยินยอมให้ “วิเคราะห์” ไม่ได้แปลว่ายินยอมให้ “ส่งต่อ” จึงต้องมี Consent คนละ Gate</div>
+        </div>
       </article>
     </div>
   </section>
@@ -301,6 +342,17 @@
           </div>
           <div class="caution"><strong>ไม่ใช่ Credit Score หรือผลอนุมัติ</strong><br>Evidence ช่วยเพิ่มบริบท แต่ผู้ให้บริการยังต้องตรวจสอบหนี้ ภาษี เอกสาร และนโยบายเครดิตของตน</div>
         </div></div>
+        <div class="screen-explainer">
+          <h3>Payment-to-Proof เปลี่ยนข้อมูลเป็นอะไร?</h3>
+          <p>Passport ไม่รวมทุกอย่างเป็นคะแนนเดียว แต่แยกสิ่งที่พบ รูปแบบที่วิเคราะห์ และความหมายพร้อมข้อจำกัดออกจากกัน</p>
+          <div class="explain-grid">
+            <div class="explain-item"><strong>Fact</strong><span>ข้อเท็จจริงที่พบ เช่น เงินเข้าเฉลี่ย ฿98,300 ต่อเดือน และมีธุรกรรม 3,842 รายการ</span></div>
+            <div class="explain-item"><strong>Signal</strong><span>รูปแบบจากข้อมูล เช่น มีเงินเข้า 12/12 เดือนและความผันผวนรายเดือน 14.6%</span></div>
+            <div class="explain-item"><strong>Interpretation</strong><span>คำอธิบายที่ระบุข้อจำกัด เช่น Cash-flow Headroom ไม่เท่ากับกำไรหรือความสามารถชำระหนี้</span></div>
+            <div class="explain-item"><strong>Traceability</strong><span>Evidence แต่ละใบมีที่มา ช่วงข้อมูล และเหตุผล เพื่อให้ SME และผู้ประเมินตรวจสอบได้</span></div>
+          </div>
+          <div class="explain-takeaway"><strong>คุณค่าใหม่:</strong> Your Data ทำให้ข้อมูลเคลื่อนย้ายได้ ส่วน Passport ทำให้ข้อมูลนั้นอ่านเข้าใจ ตรวจสอบ และนำไปประกอบการตัดสินใจได้โดยไม่ซ่อนอยู่ในคะแนนเดียว</div>
+        </div>
       </article>
     </div>
   </section>
@@ -336,6 +388,17 @@
           <div class="agreement"><i>✓</i><span>ฉันตรวจสอบผู้รับ Evidence วัตถุประสงค์ และวันหมดอายุแล้ว</span></div>
           <div class="button-row"><div class="btn secondary">แก้ไข</div><div class="btn primary">ยินยอมและแชร์</div></div>
         </div></div>
+        <div class="screen-explainer">
+          <h3>Consent Gate 2: SME ควบคุมการแชร์</h3>
+          <p>หลังเห็น Passport แล้ว SME จึงตัดสินใจว่าจะส่ง Evidence ใด ให้ใคร เพื่ออะไร และให้เข้าถึงได้นานเท่าไร</p>
+          <div class="explain-grid">
+            <div class="explain-item"><strong>SME เลือก</strong><span>ผู้รับ วัตถุประสงค์ Evidence 4 รายการ และกำหนดสิทธิ 30 วัน พร้อมถอนสิทธิได้</span></div>
+            <div class="explain-item"><strong>ระบบป้องกัน</strong><span>ไม่แนบข้อมูลธุรกรรมดิบโดยอัตโนมัติ และไม่อนุญาตให้ผู้รับนำไปใช้ต่างวัตถุประสงค์</span></div>
+            <div class="explain-item"><strong>ผลลัพธ์</strong><span>Evidence Package พร้อม Consent Receipt ที่บอกขอบเขตอย่างชัดเจนและตรวจสอบย้อนหลังได้</span></div>
+            <div class="explain-item"><strong>หากต้องการข้อมูลเพิ่ม</strong><span>ผู้ให้บริการต้องส่งคำขอใหม่และ SME ต้องให้ Consent เพิ่ม ไม่สามารถขยายสิทธิเอง</span></div>
+          </div>
+          <div class="explain-takeaway"><strong>Owner-controlled:</strong> Passport เป็นของ SME การสร้าง Evidence ไม่ได้ทำให้ธนาคารได้รับข้อมูลโดยอัตโนมัติ</div>
+        </div>
       </article>
 
       <article class="screen-block">
@@ -371,6 +434,17 @@
           </div>
           <div class="caution"><strong>No match ≠ Dead end</strong><br>เหตุผลและขั้นตอนต่อไปต้องอธิบายได้ โดยไม่เปิดเผยเกณฑ์ภายในของผู้ให้บริการ</div>
         </div></div>
+        <div class="screen-explainer">
+          <h3>เส้นทางการเงิน ไม่ใช่คำสัญญาอนุมัติ</h3>
+          <p>ระบบแนะนำประเภทบริการที่ควรสำรวจจาก Goal และ Evidence แต่ไม่กำหนดดอกเบี้ย ไม่แสดงโอกาสอนุมัติเป็นเปอร์เซ็นต์ และไม่แทนที่เกณฑ์ของธนาคาร</p>
+          <div class="explain-grid">
+            <div class="explain-item"><strong>กรณีมี Potential Fit</strong><span>SME เห็นว่าควรสำรวจ Equipment Financing หรือ Working Capital พร้อม Evidence ที่มีและข้อมูลที่ยังขาด</span></div>
+            <div class="explain-item"><strong>กรณียังไม่ Match</strong><span>Financial GPS แปลงเหตุผลที่ยังไปต่อไม่ได้เป็นแผนพัฒนาหลักฐานที่ทำได้จริง</span></div>
+            <div class="explain-item"><strong>ผลลัพธ์สำหรับ SME</strong><span>มีทางเลือกหรือแผนไปต่อ แทนการได้รับเพียงคำว่า “ไม่ผ่าน” โดยไม่รู้เหตุผล</span></div>
+            <div class="explain-item"><strong>ผลลัพธ์สำหรับผู้ให้บริการ</strong><span>ได้รับคำขอที่มีเป้าหมายและ Evidence พร้อมบริบทก่อนเริ่มกระบวนการประเมินของตน</span></div>
+          </div>
+          <div class="explain-takeaway"><strong>หลัก Inclusion:</strong> ความสำเร็จไม่ใช่แค่จำนวนคนได้สินเชื่อ แต่รวมถึงจำนวน SME ที่รู้ว่าต้องพัฒนาอะไรเพื่อกลับเข้าสู่ระบบได้</div>
+        </div>
       </article>
     </div>
   </section>
@@ -429,6 +503,17 @@
             </main>
           </div>
         </div></div>
+        <div class="screen-explainer wide">
+          <h3>ผู้ให้บริการได้รับ “บริบทที่ตรวจสอบได้” ไม่ใช่คำตอบสำเร็จรูป</h3>
+          <p>หน้าจอนี้เป็นตัวอย่างการนำ Evidence เข้าไปอยู่ในกระบวนการประเมินเดิมของผู้ให้บริการ โดยไม่ย้ายอำนาจตัดสินใจมาไว้ที่ Opportunity Passport</p>
+          <div class="explain-grid">
+            <div class="explain-item"><strong>ผู้ประเมินเห็นอะไร</strong><span>Evidence Summary, ที่มาของข้อมูล, ช่วงเวลา, Consent ที่ยังมีผล และข้อจำกัดของการตีความ</span></div>
+            <div class="explain-item"><strong>ระบบชี้ช่องว่างอะไร</strong><span>ยังไม่เห็นภาระหนี้ทั้งหมด ข้อมูลภาษียังไม่ครบ และข้อมูลดิบไม่ได้รวมอยู่ในสิทธิแชร์ครั้งนี้</span></div>
+            <div class="explain-item"><strong>ผู้ให้บริการทำอะไรต่อ</strong><span>ประเมินตามนโยบายเครดิตของตน ขอ Evidence เพิ่ม หรือคืน Reason Code เมื่อยังไม่เหมาะสม</span></div>
+            <div class="explain-item"><strong>ประโยชน์ที่ได้รับ</strong><span>ลดเวลาอ่านข้อมูลกระจัดกระจาย เห็นเหตุผลของ Signal และเริ่มประเมินจากบริบทที่ชัดเจนขึ้น</span></div>
+          </div>
+          <div class="explain-takeaway"><strong>System boundary:</strong> Passport ไม่ทำ KYC, ไม่กำหนดราคา, ไม่อนุมัติ และไม่เบิกจ่ายเงิน หน้าที่เหล่านี้ยังอยู่กับสถาบันการเงินตามกฎหมายและนโยบายของตน</div>
+        </div>
       </article>
     </div>
     <div class="disclaimer"><strong>System boundary:</strong> Your Data enables permissioned data movement · Payment-to-Proof converts selected data into explainable evidence · Opportunity Passport lets SME review and share it · The financial service provider remains responsible for identity checks, affordability assessment, credit policy, pricing, approval, contracting and disbursement.</div>
