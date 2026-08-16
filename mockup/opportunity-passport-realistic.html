@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#08090d">
+  <title>SME Opportunity Passport — Realistic Product Flow</title>
+  <style>
+    :root{
+      --canvas:#08090d;
+      --canvas-2:#101117;
+      --screen:#f4f6f8;
+      --card:#fff;
+      --line:#e5e8ec;
+      --ink:#141820;
+      --muted:#687181;
+      --soft:#98a2b3;
+      --green:#0d9278;
+      --green-dark:#08705d;
+      --green-bg:#e2f5ef;
+      --blue:#3868ef;
+      --blue-dark:#244ec0;
+      --blue-bg:#e9efff;
+      --amber:#9b6a12;
+      --amber-bg:#fff2d9;
+      --red:#b43d4a;
+      --red-bg:#fdebed;
+      --pink:#ff3c92;
+      --violet:#8c72ff;
+      --shadow:0 34px 85px -28px rgba(0,0,0,.72);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      min-width:320px;
+      padding-bottom:64px;
+      color:var(--ink);
+      background:
+        radial-gradient(circle at 18% 8%,rgba(56,104,239,.1),transparent 27rem),
+        radial-gradient(circle at 82% 17%,rgba(255,60,146,.08),transparent 29rem),
+        var(--canvas);
+      font-family:Inter,"Noto Sans Thai","Segoe UI",Tahoma,sans-serif;
+      -webkit-font-smoothing:antialiased;
+    }
+    button{font:inherit}
+    .hero{width:min(1180px,calc(100% - 32px));margin:auto;padding:70px 0 42px;text-align:center}
+    .eyebrow{color:var(--pink);font-size:12px;font-weight:850;letter-spacing:.15em;text-transform:uppercase}
+    .hero h1{margin:16px 0 0;color:#fff;font-size:clamp(34px,5vw,62px);line-height:1.04;letter-spacing:-.045em}
+    .hero h1 span{background:linear-gradient(90deg,#4bd9ff,#8e7bff,#ff4ca1);-webkit-background-clip:text;color:transparent}
+    .hero>p{max-width:760px;margin:18px auto 0;color:rgba(255,255,255,.57);font-size:15px;line-height:1.65}
+    .prototype-flag{display:inline-flex;margin-top:20px;padding:7px 11px;border:1px solid rgba(255,255,255,.12);border-radius:999px;color:rgba(255,255,255,.68);font-size:10px;font-weight:750;letter-spacing:.06em;text-transform:uppercase}
+    .persona-strip{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;max-width:1000px;margin:32px auto 0;overflow:hidden;border:1px solid rgba(255,255,255,.1);border-radius:18px;background:rgba(255,255,255,.1)}
+    .persona-stat{padding:14px 10px;background:rgba(10,11,16,.92)}
+    .persona-stat strong{display:block;color:#fff;font-size:16px}
+    .persona-stat span{display:block;margin-top:3px;color:rgba(255,255,255,.43);font-size:9px}
+    .section{padding:12px 20px 40px}
+    .section-title{max-width:1180px;margin:0 auto 22px;display:flex;align-items:center;gap:13px;color:#fff}
+    .section-title b{width:31px;height:31px;display:grid;place-items:center;border:1px solid rgba(255,60,146,.42);border-radius:10px;color:var(--pink);font-size:11px}
+    .section-title span{font-size:13px;font-weight:850;letter-spacing:.09em;text-transform:uppercase}
+    .flow{max-width:1180px;margin:auto;display:flex;flex-wrap:wrap;justify-content:center;align-items:flex-start;gap:42px}
+    .screen-block{display:flex;flex-direction:column;align-items:center;gap:12px}
+    .screen-no{color:rgba(255,255,255,.29);font:700 10px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.12em}
+    .screen-label{max-width:310px;min-height:38px;color:var(--pink);font-size:14px;font-weight:800;text-align:center}
+    .phone{width:340px;padding:15px;border-radius:48px;background:linear-gradient(155deg,#292a31,#090a0d 62%);box-shadow:var(--shadow),inset 0 0 0 1px rgba(255,255,255,.06)}
+    .phone-screen{width:310px;height:590px;position:relative;overflow:auto;border-radius:34px;background:var(--screen);scrollbar-width:thin}
+    .phone-screen::-webkit-scrollbar{width:4px}
+    .phone-screen::-webkit-scrollbar-thumb{border-radius:4px;background:rgba(0,0,0,.16)}
+    .status{position:sticky;top:0;z-index:5;display:flex;justify-content:space-between;padding:12px 18px 5px;background:var(--screen);font-size:10px;font-weight:800}
+    .app-head{padding:10px 18px 8px}
+    .app-head-row{display:flex;justify-content:space-between;gap:9px;align-items:flex-start}
+    .app-head h2{margin:0;font-size:17px;line-height:1.26;letter-spacing:-.025em}
+    .app-head p{margin:5px 0 0;color:var(--muted);font-size:10.5px;line-height:1.5}
+    .app-kicker{margin-bottom:5px;color:var(--green-dark);font-size:9px;font-weight:850;letter-spacing:.08em;text-transform:uppercase}
+    .badge{display:inline-flex;align-items:center;padding:4px 8px;border-radius:999px;white-space:nowrap;font-size:8px;font-weight:850;letter-spacing:.03em;text-transform:uppercase}
+    .green{color:var(--green-dark);background:var(--green-bg)}
+    .blue{color:var(--blue-dark);background:var(--blue-bg)}
+    .amber{color:var(--amber);background:var(--amber-bg)}
+    .red{color:var(--red);background:var(--red-bg)}
+    .surface-note{margin:6px 18px 10px;padding:10px 11px;border:1px solid #dfe4ff;border-radius:12px;color:var(--blue-dark);background:#f0f3ff;font-size:9px;line-height:1.5}
+    .label{margin:14px 18px 7px;color:var(--soft);font-size:9px;font-weight:850;letter-spacing:.07em;text-transform:uppercase}
+    .choice,.data-row,.consent-card,.route,.gps,.receipt-box,.metric,.evidence-gap{margin:0 18px 10px;border:1px solid var(--line);border-radius:15px;background:#fff}
+    .choice{padding:12px 13px}
+    .choice.active{border-color:#9fcfc3;background:#f4fbf8}
+    .choice-top{display:flex;justify-content:space-between;gap:8px;align-items:flex-start}
+    .choice strong{font-size:12px}
+    .choice p{margin:4px 0 0;color:var(--muted);font-size:9.5px;line-height:1.45}
+    .amount{margin-top:8px;color:var(--ink);font:750 21px ui-monospace,SFMono-Regular,Menlo,monospace}
+    .data-row{display:flex;justify-content:space-between;align-items:center;padding:10px 12px}
+    .data-row strong{display:block;font-size:10.5px}
+    .data-row small{display:block;margin-top:2px;color:var(--muted);font-size:8.5px}
+    .check{width:18px;height:18px;display:grid;place-items:center;flex:0 0 18px;border-radius:6px;color:#fff;background:var(--green);font-size:9px;font-weight:900}
+    .button-row{display:flex;gap:8px;padding:15px 18px 19px}
+    .btn{flex:1;padding:11px 9px;border:0;border-radius:11px;text-align:center;font-size:10.5px;font-weight:850}
+    .btn.primary{color:#fff;background:var(--green)}
+    .btn.secondary{color:var(--ink);border:1px solid var(--line);background:#fff}
+    .btn.blue-btn{color:#fff;background:var(--blue)}
+    .consent-card{overflow:hidden}
+    .consent-item{padding:10px 12px;border-bottom:1px solid var(--line)}
+    .consent-item:last-child{border-bottom:0}
+    .consent-item span{display:block;color:var(--soft);font-size:8px;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
+    .consent-item strong{display:block;margin-top:3px;font-size:10.5px;line-height:1.4}
+    .agreement{display:grid;grid-template-columns:17px 1fr;gap:8px;align-items:flex-start;margin:10px 18px;padding:11px;border:1px solid #bbe0d7;border-radius:12px;background:#f2faf7}
+    .agreement i{width:16px;height:16px;display:grid;place-items:center;border-radius:5px;color:#fff;background:var(--green);font-size:8px;font-style:normal}
+    .agreement span{font-size:9px;line-height:1.5}
+    .passport-head{margin:5px 18px 10px;padding:13px;border-radius:16px;color:#fff;background:linear-gradient(135deg,#152338,#205c68)}
+    .passport-head .row{display:flex;justify-content:space-between;gap:10px}
+    .passport-head h3{margin:0;font-size:15px}
+    .passport-head p{margin:4px 0 0;color:rgba(255,255,255,.67);font-size:9px;line-height:1.45}
+    .goal{margin-top:10px;padding-top:9px;border-top:1px solid rgba(255,255,255,.15);font-size:9.5px}
+    .legend{display:flex;gap:7px;flex-wrap:wrap;margin:0 18px 9px;color:var(--muted);font-size:8.5px}
+    .legend b{color:var(--ink)}
+    .metric{padding:11px 12px}
+    .metric-top{display:flex;justify-content:space-between;gap:8px;align-items:center}
+    .metric-name{color:var(--soft);font-size:8.5px;font-weight:850;letter-spacing:.05em;text-transform:uppercase}
+    .metric-value{margin-top:5px;font:750 18px ui-monospace,SFMono-Regular,Menlo,monospace}
+    .metric-value small{font:500 9px Inter,sans-serif;color:var(--muted)}
+    .metric-desc{margin-top:3px;color:var(--muted);font-size:9px;line-height:1.42}
+    .metric-source{margin-top:7px;padding-top:6px;border-top:1px dashed var(--line);color:var(--soft);font-size:8px;font-style:italic}
+    .caution{margin:9px 18px 15px;padding:10px 11px;border:1px solid #f0dfb9;border-radius:12px;color:#7b5919;background:#fff8ea;font-size:8.5px;line-height:1.5}
+    .share-manifest{margin:0 18px;border:1px solid var(--line);border-radius:15px;background:#fff;overflow:hidden}
+    .share-row{display:flex;justify-content:space-between;gap:10px;padding:10px 12px;border-bottom:1px solid var(--line);font-size:9px}
+    .share-row:last-child{border-bottom:0}
+    .share-row span{color:var(--muted)}
+    .share-row strong{text-align:right}
+    .route{padding:13px}
+    .route-top{display:flex;justify-content:space-between;gap:8px;align-items:flex-start}
+    .route h3{margin:0;font-size:12px}
+    .route p{margin:5px 0 0;color:var(--muted);font-size:9px;line-height:1.45}
+    .route-meta{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+    .route-meta div{padding:8px;border-radius:10px;background:#f6f7f9}
+    .route-meta span{display:block;color:var(--soft);font-size:7.5px;text-transform:uppercase}
+    .route-meta strong{display:block;margin-top:3px;font-size:9.5px}
+    .gps{padding:13px;border-color:#dbcfff;background:#f7f4ff}
+    .gps h3{margin:0;color:#503ab1;font-size:12px}
+    .gps p{margin:5px 0 9px;color:#665d80;font-size:9px;line-height:1.45}
+    .gps-step{display:grid;grid-template-columns:18px 1fr;gap:7px;align-items:center;margin-top:6px;color:#4a435e;font-size:8.5px}
+    .gps-step b{width:18px;height:18px;display:grid;place-items:center;border-radius:6px;color:#fff;background:var(--violet);font-size:7.5px}
+    .desktop-shell{width:min(1120px,calc(100vw - 40px));padding:13px;border-radius:26px;background:linear-gradient(155deg,#292a31,#090a0d);box-shadow:var(--shadow)}
+    .desktop{min-height:610px;overflow:hidden;border-radius:17px;background:#f4f6f8}
+    .desktop-top{display:flex;justify-content:space-between;align-items:center;padding:15px 20px;color:#fff;background:#16213a}
+    .desktop-top strong{font-size:13px}
+    .desktop-top span{color:rgba(255,255,255,.6);font-size:9px}
+    .desktop-grid{display:grid;grid-template-columns:220px 1fr}
+    .side{min-height:560px;padding:18px 14px;border-right:1px solid var(--line);background:#fff}
+    .side-brand{margin-bottom:19px;font-size:12px;font-weight:850}
+    .nav{padding:9px 10px;border-radius:9px;color:var(--muted);font-size:9px;margin-bottom:4px}
+    .nav.active{color:var(--blue-dark);background:var(--blue-bg);font-weight:800}
+    .work{padding:20px}
+    .work-head{display:flex;justify-content:space-between;gap:15px;align-items:flex-start}
+    .work h2{margin:0;font-size:20px}
+    .work-head p{margin:5px 0 0;color:var(--muted);font-size:10px}
+    .provider-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:14px;margin-top:15px}
+    .panel{padding:15px;border:1px solid var(--line);border-radius:15px;background:#fff}
+    .panel h3{margin:0 0 10px;font-size:11px}
+    .summary-row{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid var(--line);font-size:9.5px}
+    .summary-row:last-child{border-bottom:0}
+    .summary-row span{color:var(--muted)}
+    .evidence-gap{margin:10px 0 0;padding:11px;border-color:#f0dfb9;background:#fff8ea}
+    .evidence-gap strong{display:block;color:#7b5919;font-size:9px}
+    .evidence-gap ul{margin:6px 0 0;padding-left:16px;color:#7b5919;font-size:8.5px;line-height:1.6}
+    .provider-actions{display:flex;gap:8px;margin-top:14px}
+    .provider-actions .btn{max-width:190px}
+    .disclaimer{max-width:1180px;margin:8px auto 0;padding:14px 16px;border:1px solid rgba(255,255,255,.09);border-radius:15px;color:rgba(255,255,255,.45);font-size:10px;line-height:1.6;text-align:center}
+    footer{padding:20px;text-align:center;color:rgba(255,255,255,.29);font-size:10px}
+    @media(max-width:760px){
+      .hero{padding-top:46px}
+      .persona-strip{grid-template-columns:1fr 1fr}
+      .persona-stat:last-child{grid-column:1/-1}
+      .phone{width:294px;padding:12px;border-radius:42px}
+      .phone-screen{width:270px;height:515px;border-radius:30px}
+      .flow{gap:30px}
+      .desktop-grid{grid-template-columns:1fr}
+      .side{display:none}
+      .provider-grid{grid-template-columns:1fr}
+      .desktop{min-height:auto}
+      .work{padding:14px}
+      .provider-actions{flex-direction:column}
+      .provider-actions .btn{max-width:none}
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="eyebrow">SME Opportunity Passport · Product Concept</div>
+    <h1>From consented data to <span>explainable evidence</span></h1>
+    <p>Journey Prototype ที่แสดงว่า Payment-to-Proof Engine สามารถเปลี่ยนข้อมูลที่ SME ยินยอมให้ใช้เป็นหลักฐานทางการเงินที่ตรวจสอบที่มาได้ โดยไม่สร้าง Credit Score ใหม่และไม่ตัดสินสินเชื่อแทนผู้ให้บริการ</p>
+    <div class="prototype-flag">Illustrative prototype · Simulated data · No live financial offer</div>
+    <div class="persona-strip" aria-label="Persona summary">
+      <div class="persona-stat"><strong>ร้านครัวมีสุข</strong><span>ร้านอาหารขนาดเล็ก</span></div>
+      <div class="persona-stat"><strong>5 ปี</strong><span>ระยะเวลาดำเนินธุรกิจ</span></div>
+      <div class="persona-stat"><strong>3,842</strong><span>ธุรกรรมใน 12 เดือน</span></div>
+      <div class="persona-stat"><strong>฿100,000</strong><span>ซื้อ Freezer</span></div>
+      <div class="persona-stat"><strong>ไม่มี Payslip</strong><span>รับ Digital Payment เป็นหลัก</span></div>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="section-title"><b>01</b><span>SME sets the purpose and controls data use</span></div>
+    <div class="flow">
+      <article class="screen-block">
+        <div class="screen-no">SCREEN 01</div>
+        <div class="screen-label">Goal & Selected Data</div>
+        <div class="phone"><div class="phone-screen">
+          <div class="status"><span>9:41</span><span>●●● 100%</span></div>
+          <div class="app-head">
+            <div class="app-kicker">SME Journey · Step 1</div>
+            <h2>ต้องการโอกาสแบบไหน?</h2>
+            <p>ระบบจะใช้เฉพาะข้อมูลที่เกี่ยวข้องกับเป้าหมายนี้</p>
+          </div>
+          <div class="label">เป้าหมายของธุรกิจ</div>
+          <div class="choice active">
+            <div class="choice-top"><div><strong>ซื้ออุปกรณ์สำหรับร้าน</strong><p>Freezer เพื่อเพิ่มกำลังจัดเก็บวัตถุดิบ</p></div><span class="check">✓</span></div>
+            <div class="amount">฿100,000</div>
+          </div>
+          <div class="choice">
+            <div class="choice-top"><div><strong>ข้อมูลประกอบ Persona</strong><p>ดำเนินกิจการ 5 ปี · ไม่มี Payslip · รับ Digital Payment เป็นหลัก</p></div><span class="badge blue">Context</span></div>
+          </div>
+          <div class="label">แหล่งข้อมูลที่เลือก</div>
+          <div class="data-row"><div><strong>Bank Transaction</strong><small>ย้อนหลัง 12 เดือน · Read-only</small></div><span class="check">✓</span></div>
+          <div class="data-row"><div><strong>PromptPay / Digital Payment</strong><small>รูปแบบเงินเข้าจากธุรกิจ</small></div><span class="check">✓</span></div>
+          <div class="data-row"><div><strong>Utility Payment</strong><small>ประวัติการชำระค่าใช้จ่ายประจำ</small></div><span class="check">✓</span></div>
+          <div class="data-row"><div><strong>Tax Information</strong><small>ใช้เท่าที่ SME เลือกและยินยอม</small></div><span class="check">✓</span></div>
+          <div class="button-row"><div class="btn primary">ตรวจสอบ Consent →</div></div>
+        </div></div>
+      </article>
+
+      <article class="screen-block">
+        <div class="screen-no">SCREEN 02</div>
+        <div class="screen-label">Consent Gate 1 — Analyze</div>
+        <div class="phone"><div class="phone-screen">
+          <div class="status"><span>9:41</span><span>●●● 100%</span></div>
+          <div class="app-head">
+            <div class="app-kicker">Consent Gate 1</div>
+            <h2>ยินยอมให้วิเคราะห์ข้อมูล</h2>
+            <p>สิทธินี้ใช้เพื่อสร้าง Financial Evidence เท่านั้น และยังไม่อนุญาตให้ส่งต่อผู้ให้บริการ</p>
+          </div>
+          <div class="surface-note"><strong>Purpose-bound consent</strong><br>Consent วิเคราะห์และ Consent แชร์เป็นคนละสิทธิ</div>
+          <div class="consent-card">
+            <div class="consent-item"><span>วัตถุประสงค์</span><strong>สร้างหลักฐานสำหรับสำรวจเงินทุนซื้อ Freezer ฿100,000</strong></div>
+            <div class="consent-item"><span>ข้อมูลที่ใช้</span><strong>Bank · PromptPay · Utility · Tax</strong></div>
+            <div class="consent-item"><span>ช่วงข้อมูล</span><strong>ย้อนหลัง 12 เดือน</strong></div>
+            <div class="consent-item"><span>รูปแบบการเข้าถึง</span><strong>Read-only · ไม่แก้ไขข้อมูลต้นทาง</strong></div>
+            <div class="consent-item"><span>การส่งต่อ</span><strong>ยังไม่ส่งให้บุคคลที่สาม</strong></div>
+            <div class="consent-item"><span>การควบคุม</span><strong>SME ถอนสิทธิและลบผลวิเคราะห์จำลองได้</strong></div>
+          </div>
+          <div class="agreement"><i>✓</i><span>ฉันตรวจสอบวัตถุประสงค์ แหล่งข้อมูล และขอบเขตการวิเคราะห์แล้ว</span></div>
+          <div class="button-row"><div class="btn secondary">ย้อนกลับ</div><div class="btn primary">ยินยอมและสร้าง Evidence</div></div>
+        </div></div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-title"><b>02</b><span>Payment-to-Proof creates traceable evidence — not a score</span></div>
+    <div class="flow">
+      <article class="screen-block">
+        <div class="screen-no">SCREEN 03</div>
+        <div class="screen-label">SME Opportunity Passport</div>
+        <div class="phone"><div class="phone-screen">
+          <div class="status"><span>9:41</span><span>●●● 100%</span></div>
+          <div class="app-head">
+            <div class="app-head-row"><div><div class="app-kicker">Illustrative Passport</div><h2>ร้านครัวมีสุข</h2><p>ร้านอาหาร · ดำเนินกิจการ 5 ปี<br>Tax ID ••••••••1234</p></div><span class="badge amber">Simulated</span></div>
+          </div>
+          <div class="passport-head">
+            <div class="row"><div><h3>Opportunity Passport</h3><p>สร้างจากข้อมูลที่ SME ยินยอมให้วิเคราะห์</p></div><span class="badge green">Traceable</span></div>
+            <div class="goal"><strong>Goal:</strong> ซื้อ Freezer · ฿100,000</div>
+          </div>
+          <div class="legend"><b>Fact</b><span>ข้อมูลที่สังเกตได้</span><b>Signal</b><span>รูปแบบ</span><b>Interpretation</b><span>ความหมายพร้อมข้อจำกัด</span></div>
+          <div class="metric">
+            <div class="metric-top"><span class="metric-name">Observed Business Inflow</span><span class="badge blue">Fact</span></div>
+            <div class="metric-value">฿98,300 <small>/ เดือน</small></div>
+            <div class="metric-desc">เงินเข้ารวม ฿1,179,600 · 2,486 รายการเงินเข้า</div>
+            <div class="metric-source">ที่มา: Bank Transaction + PromptPay · 12 เดือน</div>
+          </div>
+          <div class="metric">
+            <div class="metric-top"><span class="metric-name">Revenue Consistency</span><span class="badge blue">Signal</span></div>
+            <div class="metric-value">12 / 12 <small>เดือนมีเงินเข้า</small></div>
+            <div class="metric-desc">ความผันผวนรายเดือน 14.6% · ต้องพิจารณาฤดูกาลร่วมด้วย</div>
+            <div class="metric-source">ที่มา: รูปแบบเงินเข้าที่จัดหมวดหมู่ใน Prototype</div>
+          </div>
+          <div class="metric">
+            <div class="metric-top"><span class="metric-name">Liquidity Buffer</span><span class="badge amber">Review</span></div>
+            <div class="metric-value">0.7 <small>เดือนของเงินออกที่สังเกตได้</small></div>
+            <div class="metric-desc">ยอดสิ้นเดือนมัธยฐาน ฿54,200 · ต่ำสุด ฿18,700 · มี 9 วันที่ยอดต่ำกว่า ฿10,000</div>
+          </div>
+          <div class="metric">
+            <div class="metric-top"><span class="metric-name">Payment Discipline</span><span class="badge green">Evidence</span></div>
+            <div class="metric-value">23 / 24 <small>รายการตามกำหนด</small></div>
+            <div class="metric-desc">ค่าเช่าและ Utility ที่จับคู่กับกำหนดชำระได้ในข้อมูลจำลอง</div>
+          </div>
+          <div class="metric">
+            <div class="metric-top"><span class="metric-name">Continuity & Coverage</span><span class="badge green">Evidence</span></div>
+            <div class="metric-value">3,842 <small>ธุรกรรม · 5 ปี</small></div>
+            <div class="metric-desc">2,486 เงินเข้า · 1,356 เงินออก · วิเคราะห์ย้อนหลัง 12 เดือน</div>
+          </div>
+          <div class="metric">
+            <div class="metric-top"><span class="metric-name">Observed Cash-flow Headroom</span><span class="badge amber">Context</span></div>
+            <div class="metric-value">≈฿18,600 <small>/ เดือน</small></div>
+            <div class="metric-desc">ไม่ใช่กำไรและไม่ใช่ Repayment Capacity เพราะอาจยังไม่เห็นภาระทั้งหมด</div>
+          </div>
+          <div class="caution"><strong>ไม่ใช่ Credit Score หรือผลอนุมัติ</strong><br>Evidence ช่วยเพิ่มบริบท แต่ผู้ให้บริการยังต้องตรวจสอบหนี้ ภาษี เอกสาร และนโยบายเครดิตของตน</div>
+        </div></div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-title"><b>03</b><span>SME chooses what to share — and always gets a way forward</span></div>
+    <div class="flow">
+      <article class="screen-block">
+        <div class="screen-no">SCREEN 04</div>
+        <div class="screen-label">Consent Gate 2 — Share</div>
+        <div class="phone"><div class="phone-screen">
+          <div class="status"><span>9:41</span><span>●●● 100%</span></div>
+          <div class="app-head">
+            <div class="app-kicker">Consent Gate 2</div>
+            <h2>ตรวจสอบก่อนแชร์</h2>
+            <p>SME เลือกผู้รับ Evidence ระยะเวลา และข้อมูลที่อนุญาตให้เห็น</p>
+          </div>
+          <div class="label">Consent Receipt Preview</div>
+          <div class="share-manifest">
+            <div class="share-row"><span>ผู้รับ</span><strong>Participating Bank A</strong></div>
+            <div class="share-row"><span>วัตถุประสงค์</span><strong>ประเมินทางเลือกเงินทุนซื้ออุปกรณ์</strong></div>
+            <div class="share-row"><span>Evidence</span><strong>4 รายการ</strong></div>
+            <div class="share-row"><span>ข้อมูลดิบ</span><strong>ไม่รวมในสิทธินี้</strong></div>
+            <div class="share-row"><span>ระยะเวลา</span><strong>30 วัน</strong></div>
+            <div class="share-row"><span>ถอนสิทธิ</span><strong>ได้ทุกเมื่อ</strong></div>
+          </div>
+          <div class="label">Evidence ที่เลือก</div>
+          <div class="data-row"><div><strong>Observed Business Inflow</strong><small>พร้อมช่วงข้อมูลและที่มา</small></div><span class="check">✓</span></div>
+          <div class="data-row"><div><strong>Revenue Consistency</strong><small>พร้อมข้อจำกัดเรื่องฤดูกาล</small></div><span class="check">✓</span></div>
+          <div class="data-row"><div><strong>Payment Discipline</strong><small>23/24 รายการที่ตรวจสอบได้</small></div><span class="check">✓</span></div>
+          <div class="data-row"><div><strong>Business Continuity</strong><small>5 ปี · 3,842 ธุรกรรม</small></div><span class="check">✓</span></div>
+          <div class="surface-note">หากผู้ให้บริการต้องการข้อมูลดิบหรือ Evidence เพิ่ม จะต้องขอ Consent แยกอีกครั้ง</div>
+          <div class="agreement"><i>✓</i><span>ฉันตรวจสอบผู้รับ Evidence วัตถุประสงค์ และวันหมดอายุแล้ว</span></div>
+          <div class="button-row"><div class="btn secondary">แก้ไข</div><div class="btn primary">ยินยอมและแชร์</div></div>
+        </div></div>
+      </article>
+
+      <article class="screen-block">
+        <div class="screen-no">SCREEN 05</div>
+        <div class="screen-label">Potential Routes + Financial GPS</div>
+        <div class="phone"><div class="phone-screen">
+          <div class="status"><span>9:41</span><span>●●● 100%</span></div>
+          <div class="app-head">
+            <div class="app-kicker">Explore Options</div>
+            <h2>ทางเลือกที่ควรสำรวจต่อ</h2>
+            <p>ระบบแสดงเส้นทางที่อาจเหมาะ ไม่ใช่ข้อเสนอหรือผลอนุมัติสินเชื่อ</p>
+          </div>
+          <div class="route">
+            <div class="route-top"><div><h3>Equipment Financing Route</h3><p>สำหรับ Freezer ตามเป้าหมายของ Persona</p></div><span class="badge green">Potential fit</span></div>
+            <div class="route-meta">
+              <div><span>Requested</span><strong>฿100,000</strong></div>
+              <div><span>Term to explore</span><strong>12–24 เดือน</strong></div>
+              <div><span>Evidence available</span><strong>4 รายการ</strong></div>
+              <div><span>Decision owner</span><strong>ผู้ให้บริการ</strong></div>
+            </div>
+            <div class="button-row" style="padding:11px 0 0"><div class="btn primary">ส่ง Evidence เพื่อรับการประเมิน</div></div>
+          </div>
+          <div class="route">
+            <div class="route-top"><div><h3>Working Capital Route</h3><p>ทางเลือกสำรองหากต้องการสภาพคล่องควบคู่กับอุปกรณ์</p></div><span class="badge blue">Explore</span></div>
+            <div class="metric-desc">ต้องมีข้อมูลค่าใช้จ่ายและภาระหนี้เพิ่มเติมก่อนประเมินความเหมาะสม</div>
+          </div>
+          <div class="gps">
+            <h3>Financial GPS · หากยังไม่ Match</h3>
+            <p>SME จะไม่ได้รับเพียงคำตอบว่า “ไม่ผ่าน” แต่เห็น Evidence ที่ควรพัฒนาต่อ</p>
+            <div class="gps-step"><b>1</b><span>เพิ่มข้อมูล Invoice และ Tax ให้ครอบคลุมขึ้น</span></div>
+            <div class="gps-step"><b>2</b><span>แยกบัญชีธุรกิจออกจากบัญชีส่วนตัวให้ชัดเจน</span></div>
+            <div class="gps-step"><b>3</b><span>สะสมหลักฐานอีก 90 วันและสร้าง Passport ใหม่</span></div>
+          </div>
+          <div class="caution"><strong>No match ≠ Dead end</strong><br>เหตุผลและขั้นตอนต่อไปต้องอธิบายได้ โดยไม่เปิดเผยเกณฑ์ภายในของผู้ให้บริการ</div>
+        </div></div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-title"><b>04</b><span>The lender receives context — not an automated decision</span></div>
+    <div class="flow">
+      <article class="screen-block">
+        <div class="screen-no">SCREEN 06 · DESKTOP VIEW</div>
+        <div class="screen-label">Participating Lender Review</div>
+        <div class="desktop-shell"><div class="desktop">
+          <div class="desktop-top"><strong>Participating Lender Console</strong><span>Evidence access expires in 30 days · Illustrative</span></div>
+          <div class="desktop-grid">
+            <aside class="side">
+              <div class="side-brand">Opportunity Evidence</div>
+              <div class="nav active">Applicant review</div>
+              <div class="nav">Evidence provenance</div>
+              <div class="nav">Additional requests</div>
+              <div class="nav">Reason codes</div>
+              <div class="nav">Consent receipt</div>
+            </aside>
+            <main class="work">
+              <div class="work-head">
+                <div><div class="app-kicker">Equipment Financing · ฿100,000</div><h2>ร้านครัวมีสุข</h2><p>ร้านอาหาร · 5 ปี · Tax ID ••••••••1234 · Evidence shared by SME</p></div>
+                <span class="badge amber">Assessment required</span>
+              </div>
+              <div class="provider-grid">
+                <section class="panel">
+                  <h3>Explainable Evidence Summary</h3>
+                  <div class="summary-row"><span>Observed monthly inflow</span><strong>฿98,300 · 12 months</strong></div>
+                  <div class="summary-row"><span>Active revenue months</span><strong>12 / 12</strong></div>
+                  <div class="summary-row"><span>Monthly variation</span><strong>14.6%</strong></div>
+                  <div class="summary-row"><span>Payment discipline</span><strong>23 / 24 observed</strong></div>
+                  <div class="summary-row"><span>Business continuity</span><strong>5 years</strong></div>
+                  <div class="summary-row"><span>Evidence coverage</span><strong>3,842 transactions</strong></div>
+                  <div class="summary-row"><span>Observed cash-flow headroom</span><strong>≈฿18,600 / month</strong></div>
+                  <div class="caution" style="margin:12px 0 0"><strong>Interpretation boundary</strong><br>Observed inflow and headroom are not audited revenue, profit, DSCR, or repayment capacity.</div>
+                </section>
+                <aside class="panel">
+                  <h3>Evidence Gaps & Consent</h3>
+                  <div class="summary-row"><span>Raw transactions</span><strong>Not shared</strong></div>
+                  <div class="summary-row"><span>Full external debt</span><strong>Not verified</strong></div>
+                  <div class="summary-row"><span>Latest tax filing</span><strong>Partial coverage</strong></div>
+                  <div class="summary-row"><span>Consent validity</span><strong>30 days</strong></div>
+                  <div class="evidence-gap">
+                    <strong>Recommended next check</strong>
+                    <ul><li>Verify total debt obligations</li><li>Request latest tax evidence if policy requires</li><li>Assess under the lender’s own credit policy</li></ul>
+                  </div>
+                </aside>
+              </div>
+              <div class="provider-actions">
+                <div class="btn blue-btn">Continue Assessment</div>
+                <div class="btn secondary">Request More Evidence</div>
+                <div class="btn secondary">Not a Fit · Return Reason Code</div>
+              </div>
+            </main>
+          </div>
+        </div></div>
+      </article>
+    </div>
+    <div class="disclaimer"><strong>System boundary:</strong> Your Data enables permissioned data movement · Payment-to-Proof converts selected data into explainable evidence · Opportunity Passport lets SME review and share it · The financial service provider remains responsible for identity checks, affordability assessment, credit policy, pricing, approval, contracting and disbursement.</div>
+  </section>
+
+  <footer>Illustrative concept prototype · Simulated persona and figures · Not an actual financial product, offer, credit score or lending decision</footer>
+</body>
+</html>
